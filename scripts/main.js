@@ -1,20 +1,23 @@
-const nav = document.getElementById('link-list');
+const HEIGHT_NUM = 300;
 
-nav.onclick = function(event){
-	event.preventDefault();
+const nav = document.getElementById('link-list');
+const btn = document.getElementById('scroll-top');
+
+nav.addEventListener('click', function(event){
 	const el = document.getElementById(event.target.dataset.section);
 	el.scrollIntoView({behavior: 'smooth'});
-};
+});
 
-const btn = document.getElementById('scroll-top');
+btn.addEventListener('click', function(){
+    window.scrollTo({top:0,behavior: 'smooth'});
+});
+
 function visible(){
-	if(window.pageYOffset >= 300){
+	if(window.pageYOffset >= HEIGHT_NUM){
 		btn.classList.add('visible');
 	}else{
 		btn.classList.remove('visible');
 	}
 }
-btn.onclick = function(){
-	window.scrollTo({top:0,behavior: 'smooth'});
-} 
+
 window.onscroll = visible;
